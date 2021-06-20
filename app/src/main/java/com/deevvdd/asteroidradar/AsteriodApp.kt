@@ -42,7 +42,7 @@ class AsteriodApp : Application() {
             }.build()
 
         val repeatingRequestDelete =
-            PeriodicWorkRequestBuilder<RefreshAsteroidWork>(1, TimeUnit.MINUTES)
+            PeriodicWorkRequestBuilder<RefreshAsteroidWork>(1, TimeUnit.DAYS)
                 .setConstraints(constraintsDelete)
                 .build()
 
@@ -63,7 +63,7 @@ class AsteriodApp : Application() {
                 }
             }.build()
 
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshAsteroidWork>(1, TimeUnit.MINUTES)
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshAsteroidWork>(1, TimeUnit.DAYS)
             .setConstraints(constraints)
             .build()
 
