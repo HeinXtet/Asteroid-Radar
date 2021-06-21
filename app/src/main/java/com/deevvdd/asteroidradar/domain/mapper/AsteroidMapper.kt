@@ -26,7 +26,7 @@ object AsteroidMapper {
             val nearEarthObjectsJson = getJSONObject("near_earth_objects")
             val nextSevenDaysFormattedDates = getNextSevenDaysFormattedDates()
             for (formattedDate in nextSevenDaysFormattedDates) {
-                if(nearEarthObjectsJson.has(formattedDate)){
+                if (nearEarthObjectsJson.has(formattedDate)) {
                     val dateAsteroidJsonArray = nearEarthObjectsJson.getJSONArray(formattedDate)
                     Timber.d("Json Parse Data $dateAsteroidJsonArray")
                     for (i in 0 until dateAsteroidJsonArray.length()) {
@@ -36,7 +36,6 @@ object AsteroidMapper {
                         val absoluteMagnitude = asteroidJson.getDouble("absolute_magnitude_h")
                         val estimatedDiameter = asteroidJson.getJSONObject("estimated_diameter")
                             .getJSONObject("kilometers").getDouble("estimated_diameter_max")
-
                         val closeApproachData = asteroidJson
                             .getJSONArray("close_approach_data").getJSONObject(0)
                         val relativeVelocity = closeApproachData.getJSONObject("relative_velocity")
@@ -46,13 +45,21 @@ object AsteroidMapper {
                         val isPotentiallyHazardous = asteroidJson
                             .getBoolean("is_potentially_hazardous_asteroid")
 
-                        val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
-                            estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
+                        val asteroid = Asteroid(
+                            id,
+                            codename,
+                            formattedDate,
+                            absoluteMagnitude,
+                            estimatedDiameter,
+                            relativeVelocity,
+                            distanceFromEarth,
+                            isPotentiallyHazardous
+                        )
                         asteroidList.add(asteroid)
                     }
                 }
-                return asteroidList
             }
+            return asteroidList
         } catch (e: Exception) {
             Timber.d("Json Parse Error ${e.printStackTrace()}")
             e.printStackTrace()

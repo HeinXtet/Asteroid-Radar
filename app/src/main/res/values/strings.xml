@@ -23,4 +23,5 @@
     <string name="asteroid_data_details">Asteroid Details</string>
     <string name="text_help_info">Help Info Icon Image.</string>
     <string name="image_of_the_status">Status for Asteroid</string>
+    <string name="description_of_asteroid_details">Image of asteroid details</string>
 </resources>

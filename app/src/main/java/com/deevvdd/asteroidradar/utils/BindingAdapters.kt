@@ -32,7 +32,11 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
 @BindingAdapter("imageUrl")
 fun bindNetworkUrl(imageView: ImageView, imageUrl: String?) {
     if (imageUrl != null && imageUrl.isNotEmpty()) {
-        Picasso.with(imageView.context).load(imageUrl).into(imageView)
+        Picasso.with(imageView.context)
+            .load(imageUrl)
+            .placeholder(R.drawable.placeholder_picture_of_day)
+            .error(R.drawable.placeholder_picture_of_day)
+            .into(imageView)
     }
 }
 
