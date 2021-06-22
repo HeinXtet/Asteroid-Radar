@@ -25,7 +25,6 @@ class MainViewModel @Inject constructor(private val repository: AsteroidReposito
 
     private val _loading = MutableLiveData<Boolean>()
 
-
     private val loadData = MutableLiveData<Boolean>()
 
     val asteroidList = Transformations.switchMap(loadData) {
@@ -42,7 +41,6 @@ class MainViewModel @Inject constructor(private val repository: AsteroidReposito
 
     val emptyAsteroids: LiveData<Boolean>
         get() = _emptyAsteroids
-
 
     init {
         loadData.value = true
@@ -85,13 +83,16 @@ class MainViewModel @Inject constructor(private val repository: AsteroidReposito
     private fun filterAsteroid(): LiveData<List<Asteroid>> {
         return when (currentFilterType) {
             AsteroidFilterType.TODAY -> {
-                repository.getAsteroidWithClosetDate(getToday(), getToday())
+                repository.getAsteroidWithClosetDate(getToday(), getToday()).asLiveData()
             }
             AsteroidFilterType.ALL -> {
-                repository.getAllSavedAsteroid()
+                repository.getAllSavedAsteroid().asLiveData()
             }
             AsteroidFilterType.WEEKLY -> {
-                repository.getAsteroidWithClosetDate(getToday(), getSevenDayTodayOnwards())
+                repository.getAsteroidWithClosetDate(
+                    getToday(),
+                    getSevenDayTodayOnwards()
+                ).asLiveData()
             }
         }
     }

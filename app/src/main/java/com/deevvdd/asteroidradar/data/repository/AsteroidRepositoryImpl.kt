@@ -9,6 +9,7 @@ import com.deevvdd.asteroidradar.domain.model.PictureOfDay
 import com.deevvdd.asteroidradar.domain.repository.AsteroidRepository
 import com.deevvdd.asteroidradar.domain.utils.Either
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import javax.inject.Inject
@@ -46,7 +47,7 @@ class AsteroidRepositoryImpl @Inject constructor(
     override fun getAsteroidWithClosetDate(
         startDate: String,
         endDate: String
-    ): LiveData<List<Asteroid>> =
+    ): Flow<List<Asteroid>> =
         asteroidDao.getAsteroidWithClosetDate(startDate, endDate)
 
     override suspend fun fetchAsteroidData(

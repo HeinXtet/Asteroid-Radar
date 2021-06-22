@@ -7,6 +7,7 @@ import com.deevvdd.asteroidradar.api.getToday
 import com.deevvdd.asteroidradar.domain.model.Asteroid
 import com.deevvdd.asteroidradar.domain.model.PictureOfDay
 import com.deevvdd.asteroidradar.domain.utils.Either
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by heinhtet deevvdd@gmail.com on 16,June,2021
@@ -20,9 +21,9 @@ interface AsteroidRepository {
 
     suspend fun saveAllAsteroidData(asteroid: List<Asteroid>)
 
-    fun getAsteroidWithClosetDate(startDate: String, endDate: String): LiveData<List<Asteroid>>
+    fun getAsteroidWithClosetDate(startDate: String, endDate: String): Flow<List<Asteroid>>
 
-    fun getAllSavedAsteroid(): LiveData<List<Asteroid>>
+    fun getAllSavedAsteroid(): Flow<List<Asteroid>>
 
     suspend fun fetchAsteroidData(
         startDate: String = getToday(),
